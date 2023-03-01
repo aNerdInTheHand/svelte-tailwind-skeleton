@@ -4,7 +4,7 @@
   import "../app.css";
 </script>
 
-<div class="relative bg-slate-700 text-blue-700 flex min-h-screen flex-col justify-center overflow-hidden">
+<div class="relative bg-slate-700 text-white flex min-h-screen flex-col justify-center overflow-hidden">
 	<Header />
 
 	<main class="flex-1">
