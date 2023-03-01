@@ -2,6 +2,7 @@
   import { toggle } from '../../stores'
   const buttonOffImg = './src/lib/icons8-light-off-50.png'
   const buttonOnImg = './src/lib/icons8-light-on-48.png'
+  
   $: buttonText = $toggle.on ? 'Turn Off' : 'Turn On';
 </script>
 

@@ -17,13 +17,23 @@
 					</span>
 				</a>
 			</li>
-			<li class="hover:text-amber-400" aria-current={$page.url.pathname.startsWith('/other') ? 'page' : undefined}>
-				<a href="/other">
+			<li class="hover:text-amber-400" aria-current={$page.url.pathname.startsWith('/toggle') ? 'page' : undefined}>
+				<a href="/toggle">
 					<span class="sm:hidden">
-						🌭
+						🔘
 					</span>
 					<span class="hidden sm:block">
-						🌭 Other Route
+						🔘 Basic Toggle
+					</span>
+				</a>
+			</li>
+			<li class="hover:text-amber-400" aria-current={$page.url.pathname.startsWith('/fetch') ? 'page' : undefined}>
+				<a href="/fetch">
+					<span class="sm:hidden">
+						✨
+					</span>
+					<span class="hidden sm:block">
+						✨ Fetch Data
 					</span>
 				</a>
 			</li>
