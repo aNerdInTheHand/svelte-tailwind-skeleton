@@ -8,3 +8,5 @@ export const toggle = writable<ToggleType>({
   on: false,
   text: 'This component updates a value in the store.'
 })
+
+export const answers = writable<[]>([])

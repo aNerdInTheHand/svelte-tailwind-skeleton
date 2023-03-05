@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { CurrencyType } from '../../types/currency.type'
   let disabled = false;
   let triggered = false;
 	let promise = Promise.resolve<[]>([]);
+  import Questions from './Questions.svelte'
 	
-	const fetchExchangeRates = async ():Promise<any> => {
-		const response = await self.fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
+	const getQuestions = async ():Promise<any> => {
+		const response = await self.fetch('http://localhost:3000/questions');
 
 		if (response.ok) {
   		return response.json();
@@ -16,18 +16,20 @@
 	}
 
   const handleClick = () => {
-    promise = fetchExchangeRates();
+    promise = getQuestions();
     disabled = true;
     triggered = true;
 	}
 
 </script>
 
-<h1 class="p-4 m-4 max-w-md mx-auto bg-slate-800 shadow-md overflow-hidden md:max-w-2xl font-bold text-center text-lg">API call example</h1>
+<h1 class="p-4 m-4 max-w-md mx-auto bg-slate-800 shadow-md overflow-hidden md:max-w-2xl font-bold text-center text-lg">
+  Pub Quiz
+</h1>
 
 <div class="p-4 m-4 font-serif italic">
-  <div>This page fetches Bitcoin exchange rates from Coindesk's API and displays the conversion rates for USD, GBP and EUR.</div>
-  <div>The full return value is displayed underneath.</div>
+  <div>Welcome to the Mind Gym pub quiz!</div>
+  <div>The full return value is displayed underneath for debugging.</div>
   <hr />
 </div>
 
@@ -36,7 +38,7 @@
     on:click={handleClick} {disabled}
     class="p-4 m-4 rounded max-w-md mx-auto bg-slate-800 hover:bg-slate-900 shadow-md overflow-hidden md:max-w-2xl font-bold text-center text-lg text-yellow-400 hover:text-yellow-300"
     >
-    Fetch Exchange Rates
+    Start Quiz!
 </button>
 </div>
 
@@ -48,14 +50,11 @@
   </div>
 {:then data}
   <div class="columns-2 lg:columns-3">
-    {#each Object.entries(data.bpi) as [currency, info]}
-      <h2>{info.description}</h2>
-      <span>1 BTC = {info.rate} {currency}</span>
-    {/each}
+    <Questions data={data} />
   </div>
-  <pre class="my-4 bg-slate-900 text-yellow-300">
+  <!-- <pre class="my-4 bg-slate-900 text-yellow-300">
 {JSON.stringify(data, null, 2)}
-  </pre>
+  </pre> -->
 {:catch error}
   {JSON.stringify(error, null, 2)}
 {/await}
